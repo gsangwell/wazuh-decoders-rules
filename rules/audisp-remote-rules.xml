@@ -1,0 +1,44 @@
+<group name="audit,">
+  <rule id="100201" level="0">
+    <decoded_as>audisp-remote</decoded_as>
+    <description>Audisp Remote: Messages grouped.</description>
+    <group>audisp_syslog,gdpr_IV_30.1.g,</group>
+  </rule>
+
+  <rule id="100202" level="3">
+    <if_sid>100201</if_sid>
+    <field name="audit.type">SYSCALL</field>
+    <description>Audit Command SYSCALL: $(audit.command)</description>
+    <group>audisp_syslog,audit_command,gdpr_IV_30.1.g,</group>
+  </rule>
+
+  <rule id="100203" level="3">
+    <if_sid>100201</if_sid>
+    <field name="audit.type">EXECVE</field>
+    <description>Audit Command EXECVE: $(audit.execve.a0)</description>
+    <group>audisp_syslog,audit_command,gdpr_IV_30.1.g,</group>
+  </rule>
+
+  <rule id="100204" level="3">
+    <if_sid>100201</if_sid>
+    <field name="audit.type">CWD</field>
+    <description>Audit Command CWD: $(audit.cwd)</description>
+    <group>audisp_syslog,audit_command,gdpr_IV_30.1.g,</group>
+  </rule>
+
+  <rule id="100205" level="3">
+    <if_sid>100201</if_sid>
+    <field name="audit.type">PATH</field>
+    <field name="audit.directory.name">\.+</field>
+    <description>Audit Command PATH: $(audit.directory.name)</description>
+    <group>audisp_syslog,audit_command,gdpr_IV_30.1.g,</group>
+  </rule>
+
+  <rule id="100206" level="3">
+    <if_sid>100201</if_sid>
+    <field name="audit.type">PATH</field>
+    <field name="audit.file.name">\.+</field>
+    <description>Audit Command PATH: $(audit.file.name)</description>
+    <group>audisp_syslog,audit_command,gdpr_IV_30.1.g,</group>
+  </rule>
+</group>
